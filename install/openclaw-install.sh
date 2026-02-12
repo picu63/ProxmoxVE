@@ -60,6 +60,11 @@ EOF
 systemctl enable -q --now openclaw
 msg_ok "Created Service"
 
+echo ""
+echo "🦞 Starting OpenClaw onboarding wizard..."
+echo ""
+openclaw onboard
+
 motd_ssh
 customize
 cleanup_lxc
