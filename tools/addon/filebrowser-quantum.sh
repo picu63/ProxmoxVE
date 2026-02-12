@@ -2,7 +2,7 @@
 
 # Copyright (c) 2021-2026 community-scripts ORG
 # Author: MickLesk
-# License: MIT | https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
+# License: MIT | https://github.com/picu63/ProxmoxVE/raw/main/LICENSE
 
 function header_info() {
   clear
@@ -27,7 +27,7 @@ INFO="${BL}ℹ️${CL}"
 
 APP="FileBrowser Quantum"
 INSTALL_PATH="/usr/local/bin/filebrowser"
-CONFIG_PATH="/usr/local/community-scripts/fq-config.yaml"
+CONFIG_PATH="/usr/local/picu63/fq-config.yaml"
 DEFAULT_PORT=8080
 SRC_DIR="/"
 TMP_BIN="/tmp/filebrowser.$$"
@@ -59,7 +59,7 @@ function msg_ok() { echo -e "${CM} ${GN}$1${CL}"; }
 function msg_error() { echo -e "${CROSS} ${RD}$1${CL}"; }
 
 # Detect legacy FileBrowser installation
-LEGACY_DB="/usr/local/community-scripts/filebrowser.db"
+LEGACY_DB="/usr/local/picu63/filebrowser.db"
 LEGACY_BIN="/usr/local/bin/filebrowser"
 LEGACY_SERVICE_DEB="/etc/systemd/system/filebrowser.service"
 LEGACY_SERVICE_ALP="/etc/init.d/filebrowser"
@@ -142,9 +142,9 @@ mv -f "$TMP_BIN" /usr/local/bin/filebrowser
 msg_ok "Installed ${APP}"
 
 msg_info "Preparing configuration directory"
-mkdir -p /usr/local/community-scripts
-chown root:root /usr/local/community-scripts
-chmod 755 /usr/local/community-scripts
+mkdir -p /usr/local/picu63
+chown root:root /usr/local/picu63
+chmod 755 /usr/local/picu63
 msg_ok "Directory prepared"
 
 echo -n "Use No Authentication? (y/N): "
@@ -210,7 +210,7 @@ After=network.target
 
 [Service]
 User=root
-WorkingDirectory=/usr/local/community-scripts
+WorkingDirectory=/usr/local/picu63
 ExecStart=/usr/local/bin/filebrowser -c $CONFIG_PATH
 Restart=always
 
@@ -225,8 +225,8 @@ else
 command="/usr/local/bin/filebrowser"
 command_args="-c $CONFIG_PATH"
 command_background=true
-directory="/usr/local/community-scripts"
-pidfile="/usr/local/community-scripts/pidfile"
+directory="/usr/local/picu63"
+pidfile="/usr/local/picu63/pidfile"
 
 depend() {
     need net

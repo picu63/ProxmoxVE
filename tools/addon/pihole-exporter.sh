@@ -2,7 +2,7 @@
 
 # Copyright (c) 2021-2026 community-scripts ORG
 # Author: CrazyWolf13
-# License: MIT | https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
+# License: MIT | https://github.com/picu63/ProxmoxVE/raw/main/LICENSE
 # Source: https://github.com/eko/pihole-exporter/
 
 if ! command -v curl &>/dev/null; then
@@ -10,9 +10,9 @@ if ! command -v curl &>/dev/null; then
   apt-get update >/dev/null 2>&1
   apt-get install -y curl >/dev/null 2>&1
 fi
-source <(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/misc/core.func)
-source <(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/misc/tools.func)
-source <(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/misc/error_handler.func)
+source <(curl -fsSL https://raw.githubusercontent.com/picu63/ProxmoxVE/main/misc/core.func)
+source <(curl -fsSL https://raw.githubusercontent.com/picu63/ProxmoxVE/main/misc/tools.func)
+source <(curl -fsSL https://raw.githubusercontent.com/picu63/ProxmoxVE/main/misc/error_handler.func)
 
 # Enable error handling
 set -Eeuo pipefail
@@ -181,7 +181,7 @@ EOF
   cat <<'UPDATEEOF' >/usr/local/bin/update_pihole-exporter
 #!/usr/bin/env bash
 # pihole-exporter Update Script
-type=update bash -c "$(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/tools/addon/pihole-exporter.sh)"
+type=update bash -c "$(curl -fsSL https://raw.githubusercontent.com/picu63/ProxmoxVE/main/tools/addon/pihole-exporter.sh)"
 UPDATEEOF
   chmod +x /usr/local/bin/update_pihole-exporter
   msg_ok "Created update script (/usr/local/bin/update_pihole-exporter)"

@@ -2,7 +2,7 @@
 
 # Copyright (c) 2021-2026 community-scripts ORG
 # Author: tteck (tteckster) | Co-Author: MickLesk
-# License: MIT | https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
+# License: MIT | https://github.com/picu63/ProxmoxVE/raw/main/LICENSE
 
 function header_info {
     clear
@@ -26,7 +26,7 @@ INFO="${BL}ℹ️${CL}"
 
 APP="FileBrowser"
 INSTALL_PATH="/usr/local/bin/filebrowser"
-DB_PATH="/usr/local/community-scripts/filebrowser.db"
+DB_PATH="/usr/local/picu63/filebrowser.db"
 DEFAULT_PORT=8080
 
 # Get first non-loopback IP & Detect primary network interface dynamically
@@ -112,9 +112,9 @@ if [[ "${install_prompt,,}" =~ ^(y|yes)$ ]]; then
     msg_ok "Installed ${APP}"
 
     msg_info "Creating FileBrowser directory"
-    mkdir -p /usr/local/community-scripts
-    chown root:root /usr/local/community-scripts
-    chmod 755 /usr/local/community-scripts
+    mkdir -p /usr/local/picu63
+    chown root:root /usr/local/picu63
+    chmod 755 /usr/local/picu63
     touch "$DB_PATH"
     chown root:root "$DB_PATH"
     chmod 644 "$DB_PATH"
@@ -123,7 +123,7 @@ if [[ "${install_prompt,,}" =~ ^(y|yes)$ ]]; then
     read -r -p "Would you like to use No Authentication? (y/N): " auth_prompt
     if [[ "${auth_prompt,,}" =~ ^(y|yes)$ ]]; then
         msg_info "Configuring No Authentication"
-        cd /usr/local/community-scripts
+        cd /usr/local/picu63
         filebrowser config init -a '0.0.0.0' -p "$PORT" -d "$DB_PATH" &>/dev/null
         filebrowser config set -a '0.0.0.0' -p "$PORT" -d "$DB_PATH" &>/dev/null
         filebrowser config init --auth.method=noauth &>/dev/null
@@ -132,7 +132,7 @@ if [[ "${install_prompt,,}" =~ ^(y|yes)$ ]]; then
         msg_ok "No Authentication configured"
     else
         msg_info "Setting up default authentication"
-        cd /usr/local/community-scripts
+        cd /usr/local/picu63
         filebrowser config init -a '0.0.0.0' -p "$PORT" -d "$DB_PATH" &>/dev/null
         filebrowser config set -a '0.0.0.0' -p "$PORT" -d "$DB_PATH" &>/dev/null
         filebrowser users add admin helper-scripts.com --perm.admin --database "$DB_PATH" &>/dev/null
@@ -148,10 +148,10 @@ After=network-online.target
 
 [Service]
 User=root
-WorkingDirectory=/usr/local/community-scripts
-ExecStartPre=/bin/touch /usr/local/community-scripts/filebrowser.db
-ExecStartPre=/usr/local/bin/filebrowser config set -a "0.0.0.0" -p ${PORT} -d /usr/local/community-scripts/filebrowser.db
-ExecStart=/usr/local/bin/filebrowser -r / -d /usr/local/community-scripts/filebrowser.db -p ${PORT}
+WorkingDirectory=/usr/local/picu63
+ExecStartPre=/bin/touch /usr/local/picu63/filebrowser.db
+ExecStartPre=/usr/local/bin/filebrowser config set -a "0.0.0.0" -p ${PORT} -d /usr/local/picu63/filebrowser.db
+ExecStart=/usr/local/bin/filebrowser -r / -d /usr/local/picu63/filebrowser.db -p ${PORT}
 Restart=always
 
 [Install]
@@ -166,7 +166,7 @@ command="/usr/local/bin/filebrowser"
 command_args="-r / -d $DB_PATH -p $PORT"
 command_background=true
 pidfile="/var/run/filebrowser.pid"
-directory="/usr/local/community-scripts"
+directory="/usr/local/picu63"
 
 depend() {
     need net

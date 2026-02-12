@@ -2,7 +2,7 @@
 
 # Copyright (c) 2021-2026 community-scripts ORG
 # Author: vhsdream
-# License: MIT | https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
+# License: MIT | https://github.com/picu63/ProxmoxVE/raw/main/LICENSE
 # Source: https://opencloud.eu
 
 source /dev/stdin <<<"$FUNCTIONS_FILE_PATH"
@@ -147,7 +147,7 @@ COLLABORATION_JWT_SECRET=
 # WEB_OIDC_METADATA_URL=<your auth URL>/.well-known/openid-configuration
 
 ## Full Text Search - Apache Tika
-## Requires a separate install of Tika - see https://community-scripts.github.io/ProxmoxVE/scripts?id=apache-tika
+## Requires a separate install of Tika - see https://picu63.github.io/ProxmoxVE/scripts?id=apache-tika
 # SEARCH_EXTRACTOR_TYPE=tika
 # FRONTEND_FULL_TEXT_SEARCH_ENABLED=true
 # SEARCH_EXTRACTOR_TIKA_TIKA_URL=<your-tika-url>
