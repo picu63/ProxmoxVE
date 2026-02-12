@@ -1,0 +1,44 @@
+{
+  "name": "OpenClaw",
+  "slug": "openclaw",
+  "categories": [
+    20
+  ],
+  "date_created": "2026-02-12",
+  "type": "ct",
+  "updateable": true,
+  "privileged": false,
+  "interface_port": 18789,
+  "documentation": "https://openclaw.ai/",
+  "website": "https://openclaw.ai/",
+  "logo": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/webp/openclaw.webp",
+  "config_path": "/opt/openclaw/.env",
+  "description": "OpenClaw is an open-source, self-hosted AI agent that connects large language models to your messaging apps (Telegram, WhatsApp, Discord) and automates tasks by executing shell commands, managing files, browsing the web, and more. It runs as a long-lived Node.js service with persistent memory and over 100 preconfigured skills.",
+  "install_methods": [
+    {
+      "type": "default",
+      "script": "ct/openclaw.sh",
+      "resources": {
+        "cpu": 2,
+        "ram": 4096,
+        "hdd": 10,
+        "os": "debian",
+        "version": "13"
+      }
+    }
+  ],
+  "default_credentials": {
+    "username": null,
+    "password": null
+  },
+  "notes": [
+    {
+      "text": "After installation, configure your LLM API key and messaging platform token in `/opt/openclaw/.env`, then restart the service with `systemctl restart openclaw`.",
+      "type": "warning"
+    },
+    {
+      "text": "OpenClaw requires an API key from an LLM provider (Anthropic, OpenAI, etc.) to function.",
+      "type": "info"
+    }
+  ]
+}
