@@ -23,14 +23,12 @@ msg_ok "Installed Dependencies"
 NODE_VERSION="22" setup_nodejs
 
 msg_info "Installing OpenClaw (Patience)"
-cd /opt
-$STD git clone https://github.com/openclaw/openclaw.git
-cd /opt/openclaw
-$STD npm install
+$STD npm install -g openclaw
 msg_ok "Installed OpenClaw"
 
 msg_info "Configuring OpenClaw"
-cat <<EOF >/opt/openclaw/.env
+mkdir -p /root/.openclaw
+cat <<EOF >/root/.openclaw/.env
 # OpenClaw Configuration
 # See https://openclaw.ai/ for documentation
 
@@ -41,10 +39,6 @@ cat <<EOF >/opt/openclaw/.env
 # Messaging Platform (uncomment and set one)
 # TELEGRAM_BOT_TOKEN=your-bot-token-here
 # DISCORD_BOT_TOKEN=your-bot-token-here
-
-# Gateway Settings
-OPENCLAW_HOST=0.0.0.0
-OPENCLAW_PORT=18789
 EOF
 msg_ok "Configured OpenClaw"
 
@@ -55,9 +49,8 @@ Description=OpenClaw AI Agent
 After=network.target
 
 [Service]
-WorkingDirectory=/opt/openclaw
-EnvironmentFile=/opt/openclaw/.env
-ExecStart=/usr/bin/node src/index.js
+EnvironmentFile=/root/.openclaw/.env
+ExecStart=/usr/bin/openclaw gateway --port 18789
 Restart=always
 RestartSec=10
 
